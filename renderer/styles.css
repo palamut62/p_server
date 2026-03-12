@@ -1,0 +1,455 @@
+:root {
+  color-scheme: light;
+  --bg: #0f0f11;
+  --bg-card: #1a1a1f;
+  --bg-card-hover: #22222a;
+  --bg-elevated: #252530;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --text: #e8e8ed;
+  --text-secondary: #8e8e93;
+  --text-tertiary: #636366;
+  --accent: #0a84ff;
+  --accent-dim: rgba(10, 132, 255, 0.12);
+  --accent-border: rgba(10, 132, 255, 0.25);
+  --danger: #ff453a;
+  --danger-dim: rgba(255, 69, 58, 0.12);
+  --danger-border: rgba(255, 69, 58, 0.25);
+  --success: #30d158;
+  --success-dim: rgba(48, 209, 88, 0.12);
+  --success-border: rgba(48, 209, 88, 0.25);
+  --warning: #ffd60a;
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Pro Display", "Helvetica Neue", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  user-select: none;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.popup {
+  height: 100vh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.live-pill {
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.live-pill[data-status='active'] {
+  background: var(--success-dim);
+  color: var(--success);
+  border-color: var(--success-border);
+}
+
+.live-pill[data-status='error'] {
+  background: var(--danger-dim);
+  color: var(--danger);
+  border-color: var(--danger-border);
+}
+
+/* ── Sections ── */
+.section {
+  padding: 0 12px 10px;
+}
+
+/* ── Summary Cards ── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 8px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.metric-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+
+.metric-label {
+  display: block;
+  color: var(--text-tertiary);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.metric-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background: var(--bg-card);
+  color: var(--text);
+}
+
+.btn:active {
+  transform: scale(0.97);
+  opacity: 0.8;
+}
+
+.btn:disabled {
+  cursor: default;
+  opacity: 0.3;
+  transform: none;
+}
+
+.btn-secondary {
+  flex: 1;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+
+.btn-danger {
+  color: var(--danger);
+  flex: 1;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger-dim);
+  border-color: var(--danger-border);
+}
+
+.btn[data-copied='true'] {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+/* ── Info Panel ── */
+.info-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.info-row + .info-row {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+.info-label {
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.info-value {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.status-value-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 70%;
+}
+
+.status-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-copy-status {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 0;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.btn-copy-status:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.btn-copy-status[data-copied='true'] {
+  color: var(--accent);
+}
+
+.btn-copy-status:active {
+  transform: scale(0.9);
+}
+
+/* ── Server List ── */
+.section-header {
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+
+.section-title {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.server-list-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding-bottom: 2px;
+}
+
+.server-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* ── Server Card ── */
+.server-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  transition: all 0.2s ease;
+}
+
+.server-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+
+.server-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.server-runtime {
+  color: var(--accent);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.server-card h2 {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.server-port {
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 11px;
+  border: 1px solid var(--accent-border);
+  font-variant-numeric: tabular-nums;
+}
+
+.server-command {
+  font-family: "SF Mono", "Cascadia Code", "Consolas", monospace;
+  font-size: 10px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  word-break: break-word;
+}
+
+.server-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.server-meta span {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-tertiary);
+  font-size: 10px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+}
+
+.server-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.server-actions .btn {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 11px;
+}
+
+/* ── Empty State ── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 16px;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  font-size: 12px;
+  text-align: center;
+  background: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+}
+
+.empty-state strong {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 4px 12px 12px;
+}
+
+.footer-link {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  background: var(--bg-card);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.footer-link:hover {
+  background: var(--bg-card-hover);
+  color: var(--text);
+}
+
+.footer-link:active {
+  opacity: 0.7;
+}
+
+/* ── Scrollbar ── */
+.server-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.server-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.server-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.server-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

@@ -1,0 +1,12 @@
+{
+  "name": "pico-ai-server",
+  "version": "1.0.0",
+  "description": "Pico AI Server - System Tray App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^33.0.0"
+  }
+}

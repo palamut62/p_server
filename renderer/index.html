@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Keeper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="popup">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">System Tray Server Monitor</p>
+        <h1>Server Keeper</h1>
+      </div>
+      <div class="live-pill" id="livePill">Taraniyor</div>
+    </header>
+
+    <section class="section summary-grid">
+      <article class="metric-card">
+        <span class="metric-label">Aktif</span>
+        <strong class="metric-value" id="activeCount">0</strong>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">Port</span>
+        <strong class="metric-value" id="portCount">0</strong>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">RAM</span>
+        <strong class="metric-value" id="memoryCount">0 MB</strong>
+      </article>
+    </section>
+
+    <section class="section toolbar">
+      <button class="btn btn-secondary" id="refreshBtn">Yenile</button>
+      <button class="btn btn-danger" id="stopAllBtn">Tumunu Kapat</button>
+    </section>
+
+    <section class="section info-panel">
+      <div class="info-row">
+        <span class="info-label">Son tarama</span>
+        <span class="info-value" id="refreshedAt">-</span>
+      </div>
+      <div class="info-row status-row">
+        <span class="info-label">Durum</span>
+        <div class="status-value-container">
+          <span class="info-value status-text" id="statusText">Hazir</span>
+          <button class="btn-copy-status" id="copyStatusBtn" title="Durumu Kopyala">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section server-list-container">
+      <div class="section-header">
+        <span class="section-title">Aktif sunucular</span>
+      </div>
+      <div id="serverList" class="server-list"></div>
+    </section>
+
+    <footer class="footer">
+      <button class="footer-link" id="quitBtn">Uygulamadan Cik</button>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
